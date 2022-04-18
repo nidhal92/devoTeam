@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragmentBookList"
+    android:id="@+id/nav_graph.xml">
+    <fragment android:name="com.devoTeam.harrypotter.ui.bookList.BooksListFragment"
+        tools:layout="@layout/fragment_books_list"
+        android:id="@+id/fragmentBookList">
+        <action android:id="@+id/navigateToDetails"
+            app:destination="@id/book_details_fragment"/>
+        <action android:id="@+id/navigateToCart"
+            app:destination="@id/cart_fragment"/>
+    </fragment>
+    <fragment android:id="@+id/book_details_fragment"
+        android:name="com.devoTeam.harrypotter.ui.bookDetails.BookDetailsFragment"
+        tools:layout="@layout/fragment_book_details">
+        <argument android:name="book"
+            app:argType="com.devoTeam.harrypotter.domain.model.Book"/>
+    </fragment>
+    <fragment android:name="com.devoTeam.harrypotter.ui.cart.CartBookFragment"
+        tools:layout="@layout/fragment_cart_book"
+        android:id="@+id/cart_fragment">
+        <action
+            android:id="@+id/action_cart_fragment_to_offer_fragment"
+            app:destination="@id/offer_fragment" />
+    </fragment>
+    <fragment android:name="com.devoTeam.harrypotter.ui.offers.OfferFragment"
+        tools:layout="@layout/fragment_offer"
+        android:id="@+id/offer_fragment">
+        <argument android:name="prices"
+            app:argType="com.devoTeam.harrypotter.domain.model.PricesObject"/>
+        <action
+            android:id="@+id/action_offer_fragment_to_fragmentBookList"
+            app:destination="@id/fragmentBookList"
+            app:popUpTo="@+id/fragmentBookList"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>
